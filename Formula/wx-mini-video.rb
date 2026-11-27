@@ -13,6 +13,7 @@ class WxMiniVideo < Formula
     cp libexec/"wx-mini-video.yaml", libexec/"wx-mini-video.yaml.default"
     rm libexec/"wx-mini-video.yaml"
     bin.install_symlink libexec/"wx-mini-video.app/Contents/MacOS/wx-mini-video"
+    bin.install_symlink libexec/"wx-mini-video.app/Contents/MacOS/wx-mini-video" => "wxmv"
   end
 
   def post_install
@@ -35,12 +36,13 @@ class WxMiniVideo < Formula
       wx-mini-video macOS build is currently unsigned (preview).
       Persistent config and downloads are stored in:
         #{var}/wx-mini-video
-      Run `wx-mini-video` in Terminal, or open the app bundle:
+      Run `wx-mini-video` (or `wxmv`) in Terminal, or open the app bundle:
         open #{opt_libexec}/wx-mini-video.app
     EOS
   end
 
   test do
     assert_predicate bin/"wx-mini-video", :executable?
+    assert_predicate bin/"wxmv", :executable?
   end
 end

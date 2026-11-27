@@ -24,6 +24,7 @@ class WechatChannelsDownloader < Formula
   def install
     libexec.install Dir["*"]
     bin.install_symlink libexec/"wechat-channels-downloader"
+    bin.install_symlink libexec/"wechat-channels-downloader" => "wcd"
   end
 
   def post_install
@@ -42,7 +43,7 @@ class WechatChannelsDownloader < Formula
       Persistent login state and downloaded files are stored in:
         #{var}/wechat-channels-downloader/data
         #{var}/wechat-channels-downloader/downloads
-      Run `wechat-channels-downloader` in Terminal.
+      Run `wechat-channels-downloader` (or `wcd`) in Terminal.
       On macOS (unsigned build), you can also launch the app bundle via:
         open #{opt_libexec}/wechat-channels-downloader.app
     EOS
@@ -50,5 +51,6 @@ class WechatChannelsDownloader < Formula
 
   test do
     assert_predicate bin/"wechat-channels-downloader", :executable?
+    assert_predicate bin/"wcd", :executable?
   end
 end
